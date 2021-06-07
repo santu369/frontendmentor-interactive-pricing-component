@@ -137,6 +137,12 @@ body {
   margin: 0 0.5em;
   background-color: #bdccff;
 }
+.slider__button[aria-checked=false]:hover {
+  background-color: rgba(16, 213, 194, 0.75);
+}
+.slider__button[aria-checked=true] {
+  background-color: #0f9f90;
+}
 .slider__toggle {
   cursor: pointer;
   background-color: white;

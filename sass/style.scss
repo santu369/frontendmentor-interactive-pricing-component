@@ -182,6 +182,12 @@ body {
     border-radius: 1rem;
     margin: 0 0.5em;
     background-color: $prim-pale-blue;
+    &[aria-checked="false"]:hover {
+      background-color: rgba($prim-strong-blue, 0.75);
+    }
+    &[aria-checked="true"] {
+      background-color: $dark-cyan;
+    }
   }
   &__toggle {
     cursor: pointer;

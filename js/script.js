@@ -118,6 +118,14 @@ rangeEl.addEventListener("input", (e) => {
 toggleEl.addEventListener("click", (e) => {
   toggleEl.classList.toggle("justify-content-end");
   toggleEl.classList.toggle("justify-content-start");
+  switch (toggleEl.getAttribute("aria-checked")) {
+    case "true":
+      toggleEl.setAttribute("aria-checked", "false");
+      break;
+    case "false":
+      toggleEl.setAttribute("aria-checked", "true");
+      break;
+  }
   if (billingType === "monthly") {
     billingType = "yearly";
   } else {
