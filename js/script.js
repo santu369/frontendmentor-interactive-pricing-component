@@ -22,13 +22,17 @@ const primSoftCyan = "hsl(174, 77%, 80%)";
 const neuLightGrayBlue = "hsl(224, 65%, 95%)";
 
 // function to change gradient using percent
-const changeRangeColor = (percent) => {
+const changeRangeColor = (percent, trigger) => {
   if (window.chrome) {
     //You are using Chrome or Chromium
     // remove old slider gradient
-    document.styleSheets[2].deleteRule(
-      document.styleSheets[2].rules.length - 1
-    );
+
+    if (trigger != "start") {
+      document.styleSheets[2].deleteRule(
+        document.styleSheets[2].rules.length - 1
+      );
+    }
+
     // add new slider gradient
     document.styleSheets[2].addRule(
       ".slider__range::-webkit-slider-runnable-track",
@@ -135,7 +139,7 @@ toggleEl.addEventListener("click", (e) => {
 });
 
 // add slider gradient here once page loads
-changeRangeColor(50);
+changeRangeColor(50, "start");
 
 // reset slider on page load
 resetSlider();

@@ -55,7 +55,7 @@ body {
 
 .main {
   min-height: 100vh;
-  max-width: 34.75rem;
+  max-width: calc(34.125rem + 1.25rem);
   padding: 2rem 1.5rem;
 }
 
@@ -66,12 +66,12 @@ body {
     font-weight: $font-extra-bold;
     color: $neu-dark-blue;
     margin-bottom: 0.5em;
-    font-size: calc(1rem + 1.5vw);
+    font-size: clamp(1rem, calc(1rem + 1.5vw), 1.75rem);
   }
   &__lead {
-    font-size: calc(0.5rem + 1.5vw);
+    font-size: clamp(0.5rem, calc(0.5rem + 1.5vw), 1rem);
     margin: 0 auto;
-    width: 60%;
+    width: 56%;
     line-height: 1.75;
   }
 }
@@ -89,6 +89,13 @@ body {
     width: 100%;
     margin: 1em 0 1em 0;
     -webkit-appearance: none;
+    &:focus-visible {
+      outline: 3px auto $neu-dark-blue !important;
+      outline-offset: 2px;
+      // outline-color: $neu-dark-blue;
+      // outline-style: auto;
+      // outline-width: 3px;
+    }
     &::-webkit-slider-runnable-track {
       width: 100%;
       height: 0.5rem;
@@ -101,6 +108,10 @@ body {
       //   $neu-light-gray-blue 100%
       // );
       border-radius: 0.5rem;
+      // &:hover {
+      //   outline: 3px dotted $neu-dark-blue !important;
+      //   outline-offset: 0.25rem;
+      // }
     }
     &::-moz-range-track {
       width: 100%;
@@ -126,10 +137,13 @@ body {
       box-shadow: 0 1em 2em $prim-strong-blue;
       margin-top: -0.75rem;
       padding: 1rem;
-    }
-    &::-webkit-slider-thumb:hover {
-      // background-color: rgba($prim-strong-blue, 0.75);
-      background-color: rgba($prim-strong-blue, 0.75);
+      z-index: 10;
+      &:hover,
+      &:focus-visible {
+        background-color: rgba($prim-strong-blue, 0.75);
+        // outline: 3px dotted $neu-dark-blue !important;
+        // outline-offset: 0.25rem;
+      }
     }
     &::-webkit-slider-thumb:active {
       background-color: $dark-cyan;
@@ -171,7 +185,7 @@ body {
     margin-bottom: 1em;
   }
   &__billing-type {
-    font-size: calc(0.7rem + 0.5vw);
+    font-size: clamp(0.7rem, calc(0.7rem + 0.25vw), 0.8rem);
     margin-bottom: 0;
   }
   &__button {
@@ -182,8 +196,15 @@ body {
     border-radius: 1rem;
     margin: 0 0.5em;
     background-color: $prim-pale-blue;
-    &[aria-checked="false"]:hover {
+    &[aria-checked]:hover,
+    &:focus-visible {
       background-color: rgba($prim-strong-blue, 0.75);
+      color: $neu-white;
+      outline: 3px dotted $neu-dark-blue !important;
+      outline-offset: 0.25rem;
+    }
+    &:focus:not(:focus-visible) {
+      outline: transparent;
     }
     &[aria-checked="true"] {
       background-color: $dark-cyan;
@@ -230,6 +251,20 @@ body {
     color: $prim-pale-blue;
     padding: 0.8em 3em;
     text-decoration: none;
+    &:hover,
+    &:focus-visible {
+      color: $neu-white;
+      outline: 3px dotted $neu-dark-blue !important;
+      outline-offset: 0.25rem;
+    }
+    &:focus:not(:focus-visible) {
+      outline: transparent;
+    }
+    &:active {
+      transition: transform 100ms ease-in-out;
+      transform: scale(0.95);
+      color: $neu-white;
+    }
   }
 }
 
@@ -242,6 +277,7 @@ body {
   color: $neu-white;
   font-weight: $font-semi-bold;
   margin-bottom: 2em;
+  color: $neu-gray-blue;
   &__section {
     margin-top: 1em;
   }
@@ -251,11 +287,88 @@ body {
     font-weight: $font-extra-bold;
     &:hover,
     &:focus-visible {
-      outline: 3px dotted $prim-soft-cyan !important;
+      outline: 3px dotted $neu-dark-blue !important;
       outline-offset: 0.25rem;
+      color: $neu-dark-blue;
     }
     &:focus:not(:focus-visible) {
       outline: transparent;
+    }
+  }
+}
+
+@media screen and (min-width: 48rem) {
+  body {
+    background-size: 100% 50%;
+  }
+  .header {
+    &__lead {
+      width: 100%;
+    }
+  }
+  .slider {
+    &__button {
+      margin: 0 1em;
+    }
+    &__discount {
+      &--small {
+        display: none;
+      }
+      &--large {
+        font-size: 0.5rem;
+        color: $prim-light-red;
+        background-color: $prim-light-gray-red;
+        border-radius: 10em;
+        padding: 0.2em 1em;
+        margin-left: 0.75em;
+        margin-bottom: 0;
+        display: block;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 64rem) {
+  .main {
+    width: calc(34.125rem + 1.25rem);
+  }
+  .slider {
+    padding: 2.5em 2.5em;
+    &__main {
+      display: grid;
+      grid-template-areas:
+        "views price"
+        "slider slider";
+      align-items: center;
+    }
+    &__page-views {
+      grid-area: views;
+      margin-bottom: 0;
+      text-align: left;
+      display: block;
+    }
+    &__range {
+      grid-area: slider;
+      margin: 2em 0 3em 0;
+    }
+    &__price {
+      grid-area: price;
+      margin-bottom: 0;
+      margin-top: 0;
+      text-align: right;
+    }
+    &__details {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    &__features-list {
+      display: block;
+      text-align: left;
+      margin-bottom: 0;
+    }
+    &__cta {
+      height: max-content;
     }
   }
 }
