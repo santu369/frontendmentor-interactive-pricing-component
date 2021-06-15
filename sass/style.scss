@@ -1,3 +1,5 @@
+// @import "../node_modules/bootstrap/scss/bootstrap.scss";
+
 /* variables */
 
 $prim-soft-cyan: hsl(174, 77%, 80%);
@@ -47,10 +49,9 @@ body {
   font-size: $font-size;
   font-weight: $font-semi-bold;
   color: $neu-gray-blue;
-  min-width: 20rem;
+  min-width: 18rem;
   background: url($bg-pattern) no-repeat top left $neu-pale-blue;
   background-blend-mode: multiply;
-  // background-size: 100% auto;
 }
 
 .main {
@@ -71,7 +72,8 @@ body {
   &__lead {
     font-size: clamp(0.5rem, calc(0.5rem + 1.5vw), 1rem);
     margin: 0 auto;
-    width: 56%;
+    min-width: 12rem;
+    width: 58%;
     line-height: 1.75;
   }
 }
@@ -84,6 +86,7 @@ body {
   &__page-views {
     letter-spacing: 1px;
     font-size: 0.8rem;
+    font-weight: $font-extra-bold;
   }
   &__range {
     width: 100%;
@@ -169,7 +172,7 @@ body {
     }
   }
   &__price {
-    margin: 1em 0 2em 0;
+    margin: 1em 0 0 0;
     &--large {
       color: $neu-dark-blue;
       font-size: 2rem;
@@ -178,11 +181,25 @@ body {
       margin-right: 0.2em;
       vertical-align: -10%;
     }
+    &--month {
+      margin-bottom: 0;
+    }
+    &--year {
+      display: none;
+      margin-bottom: 1em;
+      font-size: 0.75rem;
+    }
+    &--small {
+      color: $neu-dark-blue;
+      font-weight: $font-extra-bold;
+      margin-right: 0.2em;
+    }
   }
   &__billing {
     border-bottom: 1px solid $neu-very-light-gray-blue;
     padding-bottom: 1.5em;
     margin-bottom: 1em;
+    margin-top: 1em;
   }
   &__billing-type {
     font-size: clamp(0.7rem, calc(0.7rem + 0.25vw), 0.8rem);
@@ -230,6 +247,7 @@ body {
       padding: 0.2em 1em;
       margin-left: 0.75em;
       margin-bottom: 0;
+      // animation: 3s linear 1s infinite alternate up-down;
     }
     &--large {
       display: none;
@@ -297,6 +315,32 @@ body {
   }
 }
 
+/* animations */
+@keyframes up-down {
+  0% {
+    position: relative;
+    bottom: 0;
+  }
+  50% {
+    position: relative;
+    bottom: 0.5em;
+  }
+  100% {
+    position: relative;
+    bottom: 0;
+  }
+}
+
+.up-down-anim {
+  animation: 1s linear 1s infinite alternate up-down;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+  }
+}
+
 @media screen and (min-width: 48rem) {
   body {
     background-size: 100% 50%;
@@ -320,7 +364,7 @@ body {
         background-color: $prim-light-gray-red;
         border-radius: 10em;
         padding: 0.2em 1em;
-        margin-left: 0.75em;
+        margin-left: 2em;
         margin-bottom: 0;
         display: block;
       }
@@ -341,6 +385,9 @@ body {
         "slider slider";
       align-items: center;
     }
+    &__billing {
+      margin-top: 0;
+    }
     &__page-views {
       grid-area: views;
       margin-bottom: 0;
@@ -356,6 +403,9 @@ body {
       margin-bottom: 0;
       margin-top: 0;
       text-align: right;
+      &--year {
+        margin-bottom: 0;
+      }
     }
     &__details {
       display: flex;

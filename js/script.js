@@ -1,9 +1,14 @@
+import "../node_modules/bootstrap/scss/bootstrap.scss";
+import "../sass/style.scss";
+
 const pageViewsEl = document.getElementById("page-views");
 const rangeEl = document.getElementById("range");
 const priceEl = document.getElementById("price");
-const monthlyBillingEl = document.getElementById("monthly");
 const toggleEl = document.getElementById("toggle");
-const yearlyBillingEl = document.getElementById("yearly");
+const pricePerYearEl = document.getElementById("price-per-year");
+const yearPriceEl = document.getElementById("price-year");
+const discountSmallEl = document.getElementById("discount-small");
+const discountlargeEl = document.getElementById("discount-large");
 
 // store pricing details
 const pricing = [
@@ -28,13 +33,13 @@ const changeRangeColor = (percent, trigger) => {
     // remove old slider gradient
 
     if (trigger != "start") {
-      document.styleSheets[2].deleteRule(
-        document.styleSheets[2].rules.length - 1
+      document.styleSheets[1].deleteRule(
+        document.styleSheets[1].rules.length - 1
       );
     }
 
     // add new slider gradient
-    document.styleSheets[2].addRule(
+    document.styleSheets[1].addRule(
       ".slider__range::-webkit-slider-runnable-track",
       `background: linear-gradient(
           to right, 
@@ -49,11 +54,11 @@ const changeRangeColor = (percent, trigger) => {
   } else if ("MozBoxSizing" in document.body.style) {
     //You are using Firefox or Firefox based >= 3.2
     // remove old slider gradient
-    document.styleSheets[2].deleteRule(
-      document.styleSheets[2].rules.length - 1
+    document.styleSheets[1].deleteRule(
+      document.styleSheets[1].rules.length - 1
     );
     // add new slider gradient
-    document.styleSheets[2].addRule(
+    document.styleSheets[1].addRule(
       ".slider__range::-moz-range-track",
       `background: linear-gradient(
           to right, 
@@ -79,9 +84,21 @@ const resetSlider = () => {
 const setPrice = (value) => {
   let price = pricing[value][1];
   if (billingType === "monthly") {
-    priceEl.textContent = "$" + price;
+    priceEl.textContent = "$ " + price;
+    // hide price per year
+    pricePerYearEl.style.display = "none";
+    // remove animation
+    discountSmallEl.classList.remove("up-down-anim");
+    discountlargeEl.classList.remove("up-down-anim");
   } else {
-    priceEl.textContent = "$" + (price * 0.75).toFixed(2);
+    priceEl.textContent = "$ " + (price * 0.75).toFixed(2);
+    yearPriceEl.textContent =
+      "$ " + ((price * 0.75).toFixed(2) * 12).toFixed(2);
+    // show price per year
+    pricePerYearEl.style.display = "block";
+    // add animation
+    discountSmallEl.classList.add("up-down-anim");
+    discountlargeEl.classList.add("up-down-anim");
   }
 };
 
@@ -138,8 +155,16 @@ toggleEl.addEventListener("click", (e) => {
   setPrice(rangeEl.value);
 });
 
-// add slider gradient here once page loads
-changeRangeColor(50, "start");
-
-// reset slider on page load
-resetSlider();
+document.addEventListener("DOMContentLoaded", () => {
+  const timeout = window.setTimeout(() => {
+    while (true) {
+      if (document.styleSheets[1]) {
+        // add slider gradient here once page loads
+        changeRangeColor(50, "start");
+        // reset slider on page load
+        resetSlider();
+        break;
+      }
+    }
+  }, 1000);
+});
