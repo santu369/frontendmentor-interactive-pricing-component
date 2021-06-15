@@ -31,13 +31,11 @@ const changeRangeColor = (percent, trigger) => {
   if (window.chrome) {
     //You are using Chrome or Chromium
     // remove old slider gradient
-
     if (trigger != "start") {
       document.styleSheets[1].deleteRule(
         document.styleSheets[1].rules.length - 1
       );
     }
-
     // add new slider gradient
     document.styleSheets[1].addRule(
       ".slider__range::-webkit-slider-runnable-track",
