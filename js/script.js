@@ -28,14 +28,20 @@ const neuLightGrayBlue = "hsl(224, 65%, 95%)";
 
 // function to change gradient using percent
 const changeRangeColor = (percent, trigger) => {
+  // remove old slider gradient if exists
+  if (trigger != "start") {
+    document.styleSheets[1].deleteRule(
+      document.styleSheets[1].rules.length - 1
+    );
+  }
   if (window.chrome) {
     //You are using Chrome or Chromium
     // remove old slider gradient
-    if (trigger != "start") {
-      document.styleSheets[1].deleteRule(
-        document.styleSheets[1].rules.length - 1
-      );
-    }
+    // if (trigger != "start") {
+    //   document.styleSheets[1].deleteRule(
+    //     document.styleSheets[1].rules.length - 1
+    //   );
+    // }
     // add new slider gradient
     document.styleSheets[1].addRule(
       ".slider__range::-webkit-slider-runnable-track",
@@ -51,10 +57,7 @@ const changeRangeColor = (percent, trigger) => {
     //You are using Opera >= 9.2
   } else if ("MozBoxSizing" in document.body.style) {
     //You are using Firefox or Firefox based >= 3.2
-    // remove old slider gradient
-    document.styleSheets[1].deleteRule(
-      document.styleSheets[1].rules.length - 1
-    );
+
     // add new slider gradient
     document.styleSheets[1].addRule(
       ".slider__range::-moz-range-track",
