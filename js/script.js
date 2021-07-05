@@ -35,6 +35,7 @@ const changeRangeColor = (percent, trigger) => {
     );
   }
   if (window.chrome) {
+    // console.log("chrome"); // chrome, brave, opera
     //You are using Chrome or Chromium
     // remove old slider gradient
     // if (trigger != "start") {
@@ -53,9 +54,13 @@ const changeRangeColor = (percent, trigger) => {
           ${neuLightGrayBlue} 100%
           )`
     );
-  } else if (window.opera) {
-    //You are using Opera >= 9.2
-  } else if ("MozBoxSizing" in document.body.style) {
+  }
+  // else if (window.opera) {
+  //   console.log("opera");
+  //   //You are using Opera >= 9.2
+  // }
+  else if ("MozBoxSizing" in document.body.style) {
+    // console.log("firefox"); // firefox
     //You are using Firefox or Firefox based >= 3.2
 
     // add new slider gradient
@@ -70,8 +75,10 @@ const changeRangeColor = (percent, trigger) => {
           )`
     );
   } else if ({}.toString.call(window.HTMLElement).indexOf("Constructor") + 1) {
+    console.log("safari");
     //You are using Safari >= 3.1
   } else {
+    console.log("other");
     //Unknown
   }
 };

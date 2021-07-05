@@ -173,6 +173,7 @@ body {
   }
   &__price {
     margin: 1em 0 0 0;
+    min-height: 5.75em;
     &--large {
       color: $neu-dark-blue;
       font-size: 2rem;
@@ -294,7 +295,7 @@ body {
   margin-top: 1rem;
   color: $neu-white;
   font-weight: $font-semi-bold;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
   color: $neu-gray-blue;
   &__section {
     margin-top: 1em;
@@ -419,6 +420,20 @@ body {
     }
     &__cta {
       height: max-content;
+    }
+  }
+}
+
+@media screen and (max-width: 335px) {
+  .slider {
+    &__button {
+      margin: 0;
+      height: 1.1rem;
+    }
+    &__toggle {
+      width: 0.9rem;
+      height: 0.9rem;
+      margin: 0 0.1em;
     }
   }
 }

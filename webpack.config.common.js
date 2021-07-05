@@ -1,6 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-
+const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
@@ -39,6 +39,21 @@ module.exports = {
       favicon: "./images/favicon-32x32.png",
     }),
     new MiniCssExtractPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
   ],
-  mode: "production",
+  mode: "development",
+  watch: true,
+  devtool: "inline-source-map",
+  watchOptions: {
+    aggregateTimeout: 1000,
+    ignored: /node_modules/,
+  },
+  devServer: {
+    historyApiFallback: true,
+    contentBase: path.resolve(__dirname, "./dist"),
+    open: true,
+    compress: true,
+    hot: true,
+    port: 8080,
+  },
 };
