@@ -17,6 +17,5 @@ module.exports = merge(commonConfig, {
     new MiniCssExtractPlugin({
       filename: "[name].[contenthash].css",
     }),
-    new webpack.HotModuleReplacementPlugin(),
   ],
 });

@@ -1,12 +1,12 @@
 # Frontend Mentor - Interactive pricing component solution
 
-This is a solution to the [Interactive pricing component challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/interactive-pricing-component-t0m8PIyY8). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
+This is a solution to the [Interactive pricing component challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/interactive-pricing-component-t0m8PIyY8). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
 ## Table of contents
 
 - [Overview](#overview)
   - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
+  - [Screenshots](#screenshots)
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
@@ -14,9 +14,6 @@ This is a solution to the [Interactive pricing component challenge on Frontend M
   - [Continued development](#continued-development)
   - [Useful resources](#useful-resources)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
-
-**Note: Delete this note and update the table of contents based on what sections you keep.**
 
 ## Overview
 
@@ -28,85 +25,88 @@ Users should be able to:
 - See hover states for all interactive elements on the page
 - Use the slider and toggle to see prices for different page view numbers
 
-### Screenshot
+### Screenshots
 
-![](./screenshot.jpg)
+Desktop version
 
-Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
+![desktop version](./screenshots/desktop-version.png)
 
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it. 
+Tablet version
 
-Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
+![desktop version](./screenshots/tablet-version.png)
 
-**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
+Mobile version
+
+![mobile version](./screenshots/mobile-version.png)
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Code on GitHub](https://github.com/santu369/frontendmentor-interactive-pricing-component)
+- Live Site URL: [Netlify Live URL](https://santu369-frontendmentor-interactive-pricing-component.netlify.app/)
 
 ## My process
+
+Worked on Mobile first approach, then added media queries, adjusting the layout.
+Used Bootstrap and clamp to set font sizes.
+Implemented webpack bundler in this project.
+Used different configs for dev and prod builds.
 
 ### Built with
 
 - Semantic HTML5 markup
 - CSS custom properties
 - Flexbox
-- CSS Grid
 - Mobile-first workflow
-- [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
-
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
+- BEM Methodology
+- SASS
+- CSS Animations
+- Bootstrap
+- Webpack Bundler
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+Learned to implement webpack bundler and creating toggle and slider components.
+Understanding the concept of shadow dom which we can see in different browsers which are implemented differently. So we need to target them with different selectors specific for each of them. These are supposedly experimental features and not consistent across browers.
 
-To see how you can add code snippets, see below:
+Webpack bundler is used for bundling the build files and we can use content hash to make sure our deployment works on a normal reload for the user since content hash changes for deployments based on the content it holds.
 
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
-```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
-}
-```
-
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
-
-**Note: Delete this note and the content within this section and replace with your own learnings.**
+Whlie working with Webpack, we need to use a lot of loaders and plugins based on our requirement. I have used a couple of loaders for css and js to be added to the build, some plugins for adding the linking the final html page with css and js fiels.
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
-
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+Will experiment with Gulp task runner and implement it in next project.
+Webpack seems to be a little too much for a small project like this one.
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+- [Sass](https://sass-lang.com/) - Installing and Learning Sass.
+- [BEM](https://en.bem.info/methodology/quick-start/) - Quick Start with BEM.
+- [W3C Markup Validation Service](https://validator.w3.org/) - Validator for checking the markup validity of Web documents in HTML, XHTML, SMIL, MathML, etc.
+- [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/) - Check Cascading Style Sheets (CSS) and (X)HTML documents with style sheets.
+- [Reset CSS](https://meyerweb.com/eric/tools/css/reset/) - Strips away all the default browser styling.
+- [@media>prefers-reduced-motion](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) - CSS media feature is used to detect if the user has requested that the system minimize the amount of non-essential motion it uses.
+- [Bootstrap CSS](https://getbootstrap.com/docs/5.0/getting-started/introduction/) - Getting started with Bootstrap.
+- [Webpack Module Bundler](https://webpack.js.org/) - Static module bundler for modern JavaScript applications.
 
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+  - [Webpack loaders](https://webpack.js.org/loaders/) - Loaders are transformations that are applied to the source code of a module. They allow you to pre-process files as you import or “load” them.
+
+    - [svgo-loader](https://www.npmjs.com/package/svgo-loader) - A loader for webpack to pass your SVG files through svgo optimizer. It needs to work with either file-loader or url-loader.
+    - [url-loader](https://www.npmjs.com/package/url-loader) - Lets you import arbitrary files, like images.
+    - [mini-css-extract-plugin](https://webpack.js.org/plugins/mini-css-extract-plugin/) - Extracts CSS into separate files.
+    - [css-loader](https://www.npmjs.com/package/css-loader) - Handles bundling CSS assets.
+    - [postcss-loader](https://www.npmjs.com/package/postcss-loader) - tool for transforming styles with JS plugins. These plugins can lint your CSS, support variables and mixins, transpile future CSS syntax (adding vendor prefixes), inline images, and more.
+    - [sass-loader](https://www.npmjs.com/package/sass-loader) - Used for compiling SCSS/Sass files.
+    - [babel-loader](https://www.npmjs.com/package/babel-loader) - A tool that helps you write code in the latest version of JavaScript. When your supported environments don't support certain features natively, Babel will help you compile those features down to a supported version.
+
+  - [Webpack plugins](https://webpack.js.org/concepts/plugins/) - Plugins can be leveraged to perform a wider range of tasks like bundle optimization, asset management and injection of environment variables.
+
+    - [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-plugin) - Plugin to remove/clean your build folder(s).
+    - [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) - Simplifies creation of HTML files to serve your webpack bundles.
+    - [mini-css-extract-plugin](https://www.npmjs.com/package/mini-css-extract-plugin) - Extracts CSS into separate files.
+    - [HotModuleReplacementPlugin](https://webpack.js.org/plugins/hot-module-replacement-plugin/) - Enables Hot Module Replacement, otherwise known as HMR.
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
-
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
-
-## Acknowledgments
-
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
+- Website - [Shiva Santosh Jana](https://santu369.github.io/FreeCodeCamp-PersonalPortfolioWebpage)
+- Frontend Mentor - [@santu369](https://www.frontendmentor.io/profile/santu369)
+- Twitter - [@santu69](https://www.twitter.com/santu69)
