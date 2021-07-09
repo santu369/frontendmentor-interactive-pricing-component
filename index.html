@@ -49,11 +49,19 @@
             name="pricing-range"
           />
           <div class="slider__price d-flex flex-column justify-content-center">
-            <p class="slider__price--month" id="price-per-month">
+            <p
+              class="slider__price--month"
+              id="price-per-month"
+              aria-live="polite"
+            >
               <span class="slider__price--large" id="price">$ 16.00</span>/
               month
             </p>
-            <p class="slider__price--year" id="price-per-year">
+            <p
+              class="slider__price--year"
+              id="price-per-year"
+              aria-live="polite"
+            >
               <span class="slider__price--small" id="price-year">$ 192.00</span
               >/ year
             </p>
@@ -67,24 +75,48 @@
             justify-content-center
           "
         >
-          <label for="toggle" class="sr-only">Select billing type</label>
-          <p class="slider__billing-type">Monthly Billing</p>
-          <button
-            id="toggle"
-            role="switch"
-            type="button"
-            aria-label="Toggle Monthly/Yearly Billing Type"
-            aria-checked="false"
-            class="
-              slider__button
-              d-flex
+          <!-- <p class="slider__billing-type">Monthly Billing</p> -->
+          <!-- <button
+          id="toggle"
+          role="switch"
+          type="button"
+          aria-label="Toggle Monthly/Yearly Billing Type"
+          aria-checked="false"
+          class="
+          slider__button
+          d-flex
               align-items-center
               justify-content-start
-            "
+              "
+              >
+              <span class="slider__toggle"></span>
+            </button> -->
+          <!-- <p class="slider__billing-type">Yearly Billing</p> -->
+          <!-- start: added for input type change to radio -->
+          <label class="slider__billing-type" for="monthly"
+            >Monthly Billing</label
           >
-            <span class="slider__toggle"></span>
-          </button>
-          <p class="slider__billing-type">Yearly Billing</p>
+          <div class="slider__button">
+            <input
+              type="radio"
+              class="slider__radio"
+              id="monthly"
+              value="monthly"
+              name="billing-type"
+            />
+            <input
+              type="radio"
+              class="slider__radio"
+              id="yearly"
+              value="yearly"
+              name="billing-type"
+            />
+            <span class="slider__toggle" id="toggle"></span>
+          </div>
+          <label class="slider__billing-type" for="yearly"
+            >Yearly Billing</label
+          >
+          <!-- start: added for input type change to radio -->
           <p class="slider__discount--small" id="discount-small">-25%</p>
           <p class="slider__discount--large" id="discount-large">
             -25% discount

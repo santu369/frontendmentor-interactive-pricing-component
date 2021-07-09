@@ -205,17 +205,100 @@ body {
   &__billing-type {
     font-size: clamp(0.7rem, calc(0.7rem + 0.25vw), 0.8rem);
     margin-bottom: 0;
+    cursor: pointer;
   }
+  // &__button {
+  //   padding: 0;
+  //   width: 2.5rem;
+  //   height: 1.3rem;
+  //   border: 0;
+  //   border-radius: 1rem;
+  //   margin: 0 0.5em;
+  //   background-color: $prim-pale-blue;
+  //   cursor: pointer;
+  //   &[aria-checked]:hover,
+  //   &:focus-visible {
+  //     background-color: rgba($prim-strong-blue, 0.75);
+  //     color: $neu-white;
+  //     outline: 3px dotted $neu-dark-blue !important;
+  //     outline-offset: 0.25rem;
+  //   }
+  //   &:focus:not(:focus-visible) {
+  //     outline: transparent;
+  //   }
+  //   &[aria-checked="true"] {
+  //     background-color: $dark-cyan;
+  //   }
+  // }
+  // &__toggle {
+  //   cursor: pointer;
+  //   background-color: $neu-white;
+  //   -webkit-transition: 0.4s;
+  //   transition: 0.4s;
+  //   border-radius: 10em;
+  //   width: 1rem;
+  //   height: 1rem;
+  //   z-index: 1;
+  //   margin: 0 0.25em;
+  // }
+  /* start: added for input type change to radio */
   &__button {
+    min-width: 2.5rem;
+    height: 1rem;
+    position: relative;
+    margin: 0 0.5em;
+  }
+  &__toggle {
     padding: 0;
     width: 2.5rem;
     height: 1.3rem;
     border: 0;
     border-radius: 1rem;
-    margin: 0 0.5em;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-color: $prim-pale-blue;
-    &[aria-checked]:hover,
+    &:hover,
     &:focus-visible {
+      background-color: rgba($prim-strong-blue, 0.75);
+      color: $neu-white;
+      outline: 3px dotted $neu-dark-blue !important;
+      outline-offset: 0.25rem;
+    }
+    &::before {
+      position: absolute;
+      content: "";
+      left: 0.25em;
+      right: 1.25em;
+      // right: unset;
+      bottom: 0.175em;
+      background-color: $neu-white;
+      -webkit-transition: 0.4s;
+      transition: 0.4s;
+      border-radius: 10em;
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+  &__toggle--selected {
+    background: $dark-cyan;
+    &::before {
+      left: 1.35em;
+      // left: unset;
+      right: 0.25em;
+    }
+  }
+  $parent: #{&}; // store parent selector here
+  &__radio {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    &:hover ~ #{$parent}__toggle,
+    &:focus-visible ~ #{$parent}__toggle {
+      // retrieve parent selector here
       background-color: rgba($prim-strong-blue, 0.75);
       color: $neu-white;
       outline: 3px dotted $neu-dark-blue !important;
@@ -224,21 +307,11 @@ body {
     &:focus:not(:focus-visible) {
       outline: transparent;
     }
-    &[aria-checked="true"] {
-      background-color: $dark-cyan;
-    }
   }
-  &__toggle {
-    cursor: pointer;
-    background-color: $neu-white;
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
-    border-radius: 10em;
-    width: 1rem;
-    height: 1rem;
-    z-index: 1;
-    margin: 0 0.25em;
-  }
+  // &__radio[value="yearly"]:checked ~ &__toggle {
+  //   background: $dark-cyan;
+  // }
+  /* end: added for input type change to radio */
   &__discount {
     &--small {
       font-size: 0.5rem;
@@ -430,10 +503,10 @@ body {
       margin: 0;
       height: 1.1rem;
     }
-    &__toggle {
-      width: 0.9rem;
-      height: 0.9rem;
-      margin: 0 0.1em;
-    }
+    // &__toggle {
+    //   width: 0.9rem;
+    //   height: 0.9rem;
+    //   margin: 0 0.1em;
+    // }
   }
 }

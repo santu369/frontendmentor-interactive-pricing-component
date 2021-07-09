@@ -5,6 +5,8 @@ const pageViewsEl = document.getElementById("page-views");
 const rangeEl = document.getElementById("range");
 const priceEl = document.getElementById("price");
 const toggleEl = document.getElementById("toggle");
+const monthlyRadioEl = document.getElementById("monthly"); // added for input type change to radio
+const yearlyRadioEl = document.getElementById("yearly"); // added for input type change to radio
 const pricePerYearEl = document.getElementById("price-per-year");
 const yearPriceEl = document.getElementById("price-year");
 const discountSmallEl = document.getElementById("discount-small");
@@ -136,24 +138,79 @@ rangeEl.addEventListener("input", (e) => {
 });
 
 //toggle event handler
+// toggleEl.addEventListener("click", (e) => {
+//     toggleEl.classList.toggle("justify-content-end");
+//     toggleEl.classList.toggle("justify-content-start");
+//     switch (toggleInputEl.getAttribute("aria-checked")) {
+//       case "true":
+//         toggleEl.setAttribute("aria-checked", "false");
+//         break;
+//       case "false":
+//         toggleEl.setAttribute("aria-checked", "true");
+//         break;
+//     }
+//     if (billingType === "monthly") {
+//       billingType = "yearly";
+//     } else {
+//       billingType = "monthly";
+//     }
+//     setPrice(rangeEl.value);
+// });
+
+//toggle event handler
+/* start: added for input type change to radio */
 toggleEl.addEventListener("click", (e) => {
-  toggleEl.classList.toggle("justify-content-end");
-  toggleEl.classList.toggle("justify-content-start");
-  switch (toggleEl.getAttribute("aria-checked")) {
-    case "true":
-      toggleEl.setAttribute("aria-checked", "false");
-      break;
-    case "false":
-      toggleEl.setAttribute("aria-checked", "true");
-      break;
+  toggleUI();
+});
+monthlyRadioEl.addEventListener("click", () => {
+  toggleUI("monthly");
+});
+yearlyRadioEl.addEventListener("click", () => {
+  toggleUI("yearly");
+});
+monthlyRadioEl.addEventListener("keypress", (e) => {
+  if (e.code === "Space") {
+    toggleUI("yearly");
+    yearlyRadioEl.focus();
   }
-  if (billingType === "monthly") {
+});
+yearlyRadioEl.addEventListener("keypress", (e) => {
+  if (e.code === "Space") {
+    toggleUI("monthly");
+    monthlyRadioEl.focus();
+  }
+});
+
+const toggleUI = (type) => {
+  if (type === "monthly") {
+    toggleEl.classList.remove("slider__toggle--selected");
+    monthlyRadioEl.checked = true;
+    yearlyRadioEl.checked = false;
+    billingType = "monthly";
+  } else if (type === "yearly") {
+    toggleEl.classList.add("slider__toggle--selected");
+    monthlyRadioEl.checked = false;
+    yearlyRadioEl.checked = true;
     billingType = "yearly";
   } else {
-    billingType = "monthly";
+    toggleEl.classList.toggle("slider__toggle--selected");
+    if (toggle.classList.contains("slider__toggle--selected")) {
+      monthlyRadioEl.checked = false;
+      yearlyRadioEl.checked = true;
+    } else {
+      monthlyRadioEl.checked = true;
+      yearlyRadioEl.checked = false;
+    }
+    if (billingType === "monthly") {
+      billingType = "yearly";
+    } else {
+      billingType = "monthly";
+    }
   }
   setPrice(rangeEl.value);
-});
+};
+
+/* start: added for input type change to radio */
 
 document.addEventListener("DOMContentLoaded", () => {
   const timeout = window.setTimeout(() => {
@@ -166,5 +223,5 @@ document.addEventListener("DOMContentLoaded", () => {
         break;
       }
     }
-  }, 500);
+  }, 1000);
 });
