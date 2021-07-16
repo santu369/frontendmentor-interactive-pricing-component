@@ -33,7 +33,7 @@ Desktop version
 
 Tablet version
 
-![desktop version](./screenshots/tablet-version.png)
+![tablet version](./screenshots/tablet-version.png)
 
 Mobile version
 
